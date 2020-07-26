@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:qwikscan_admin/model/item_list.dart';
 import 'package:qwikscan_admin/repository/item_repository.dart';
 import 'package:qwikscan_admin/utils/theme.dart';
 import 'package:qwikscan_admin/widgets/cart_item.dart';
+import 'package:qwikscan_admin/widgets/show_up.dart';
 
 class SummaryPage extends StatefulWidget {
   final String cartID;
@@ -73,7 +75,14 @@ class _SummaryPageState extends State<SummaryPage> {
           }
 
           return Center(
-            child: CircularProgressIndicator(),
+            child: ShowUp(
+              delay: Duration(milliseconds: 200),
+              child: Lottie.asset(
+                'assets/animations/loading.json',
+                height: 100,
+                repeat: true,
+              ),
+            ),
           );
         },
       ),
