@@ -49,7 +49,7 @@ class _SummaryPageState extends State<SummaryPage> {
                         style: PurpleHeadingText,
                       ),
                       Text(
-                        "Total: $total",
+                        "Total: $total ₹",
                         style: MediumHeadingText,
                       ),
                     ],
