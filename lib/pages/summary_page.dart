@@ -71,7 +71,15 @@ class _SummaryPageState extends State<SummaryPage> {
               ],
             );
           } else if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
+            return Center(
+              child: Text(
+                "Oof, Something went wrong!",
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 18,
+                ),
+              ),
+            );
           }
 
           return Center(
