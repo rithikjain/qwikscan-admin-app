@@ -38,8 +38,18 @@ class _SummaryPageState extends State<SummaryPage> {
               ],
             ),
           ),
-          CartItem(),
-          CartItem(),
+          CartItem(
+            "https://i0.wp.com/cdn-prod.medicalnewstoday.com/content/images/articles/272/272782/oranges-in-a-box.jpg?w=1155&h=1444",
+            "Orange",
+            "100",
+            "5",
+          ),
+          CartItem(
+            "https://upload.wikimedia.org/wikipedia/commons/c/c4/Orange-Fruit-Pieces.jpg",
+            "Orange",
+            "80",
+            "4",
+          ),
         ],
       ),
     );

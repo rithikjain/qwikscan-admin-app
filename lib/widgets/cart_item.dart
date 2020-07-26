@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:qwikscan_admin/utils/theme.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({
-    Key key,
-  }) : super(key: key);
+  CartItem(this.itemImageUrl, this.itemName, this.itemPrice, this.itemQuantity);
+
+  final String itemName;
+  final String itemPrice;
+  final String itemQuantity;
+  final String itemImageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +30,7 @@ class CartItem extends StatelessWidget {
                   backgroundColor: Purple,
                   child: CircleAvatar(
                     radius: 30,
-                    backgroundImage: NetworkImage(
-                      "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?ixlib=rb-1.2.1&w=1000&q=80",
-                    ),
+                    backgroundImage: NetworkImage(itemImageUrl),
                   ),
                 ),
                 Container(
@@ -38,15 +39,15 @@ class CartItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "Name: Apple",
+                        "Name: $itemName",
                         style: NormalText,
                       ),
                       Text(
-                        "Price: 80",
+                        "Price: $itemPrice",
                         style: NormalText,
                       ),
                       Text(
-                        "Quantity: 5",
+                        "Quantity: $itemQuantity",
                         style: NormalText,
                       ),
                     ],
