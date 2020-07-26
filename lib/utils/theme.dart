@@ -25,8 +25,9 @@ const BigHeadingText = TextStyle(
   fontWeight: FontWeight.w500,
 );
 
-const NormalLightText = TextStyle(
-  fontWeight: FontWeight.w300,
+const NormalText = TextStyle(
+  fontWeight: FontWeight.w400,
+  fontSize: 18,
 );
 
 const MediumHeadingText = TextStyle(

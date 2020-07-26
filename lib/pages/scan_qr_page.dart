@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:qwikscan_admin/pages/summary_page.dart';
 import 'package:qwikscan_admin/utils/theme.dart';
 import 'package:qwikscan_admin/widgets/show_up.dart';
+import 'package:qrscan/qrscan.dart' as scanner;
 
 class ScanQrPage extends StatefulWidget {
   static const routename = "/scanQrPage";
@@ -54,7 +56,17 @@ class _ScanQrPageState extends State<ScanQrPage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: borderRadius8,
                 ),
-                onPressed: () => {},
+                onPressed: () async {
+                  String cartId = await scanner.scan();
+                  if (cartId != null) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SummaryPage(cartId),
+                      ),
+                    );
+                  }
+                },
               ),
             ),
           ),
