@@ -15,7 +15,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 2), () {
-      Navigator.of(context).pushNamed(ScanQrPage.routename);
+      Navigator.of(context).popAndPushNamed(ScanQrPage.routename);
     });
   }
 

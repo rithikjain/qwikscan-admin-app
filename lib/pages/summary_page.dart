@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:qwikscan_admin/model/item_list.dart';
+import 'package:qwikscan_admin/repository/item_repository.dart';
 import 'package:qwikscan_admin/utils/theme.dart';
 import 'package:qwikscan_admin/widgets/cart_item.dart';
 
@@ -12,6 +14,14 @@ class SummaryPage extends StatefulWidget {
 }
 
 class _SummaryPageState extends State<SummaryPage> {
+  Future<ItemList> futureItemsList;
+
+  @override
+  void initState() {
+    super.initState();
+    futureItemsList = ItemRepository.getCartItems(widget.cartID);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,38 +29,53 @@ class _SummaryPageState extends State<SummaryPage> {
         child: Container(),
         preferredSize: Size.fromHeight(40),
       ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
+      body: FutureBuilder<ItemList>(
+        future: futureItemsList,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            String total = snapshot.data.totalPrice.toString();
+            return Column(
               children: <Widget>[
-                Text(
-                  "Items",
-                  style: PurpleHeadingText,
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "Items",
+                        style: PurpleHeadingText,
+                      ),
+                      Text(
+                        "Total: $total",
+                        style: MediumHeadingText,
+                      ),
+                    ],
+                  ),
                 ),
-                Text(
-                  "Total: 5424 Rs",
-                  style: MediumHeadingText,
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: snapshot.data.items.length,
+                    itemBuilder: (context, index) {
+                      return CartItem(
+                        snapshot.data.items[index].itemImageUrl,
+                        snapshot.data.items[index].itemName,
+                        snapshot.data.items[index].itemPrice.toString(),
+                        snapshot.data.items[index].itemQuantity.toString(),
+                      );
+                    },
+                  ),
                 ),
               ],
-            ),
-          ),
-          CartItem(
-            "https://i0.wp.com/cdn-prod.medicalnewstoday.com/content/images/articles/272/272782/oranges-in-a-box.jpg?w=1155&h=1444",
-            "Orange",
-            "100",
-            "5",
-          ),
-          CartItem(
-            "https://upload.wikimedia.org/wikipedia/commons/c/c4/Orange-Fruit-Pieces.jpg",
-            "Orange",
-            "80",
-            "4",
-          ),
-        ],
+            );
+          } else if (snapshot.hasError) {
+            return Text(snapshot.error.toString());
+          }
+
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
