@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Qkwick Scan Admin",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Rubik',
