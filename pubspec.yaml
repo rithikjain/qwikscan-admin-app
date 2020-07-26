@@ -30,7 +30,7 @@ dependencies:
   cupertino_icons: ^0.1.3
   http:
   lottie:
-  qr_flutter:
+  qrscan:
 
 dev_dependencies:
   flutter_test:
