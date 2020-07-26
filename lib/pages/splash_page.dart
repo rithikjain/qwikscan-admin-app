@@ -14,7 +14,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 4), () {
+    Future.delayed(Duration(seconds: 2), () {
       Navigator.of(context).pushNamed(ScanQrPage.routename);
     });
   }
@@ -34,6 +34,7 @@ class _SplashPageState extends State<SplashPage> {
                   'assets/animations/shopping-lady.json',
                   height: 200,
                   repeat: true,
+                  fit: BoxFit.contain,
                 ),
               ),
               SizedBox(
